@@ -1,0 +1,62 @@
+Task 1: 02.12.2021
+
+1. Create a table with above column.
+2. API to Add and Delete employee details.
+3. API to edit Name, Age and Phone
+4. API to filter employee list by 
+Inputes:
+---------
+All:
+-----------
+{
+    "filter": "all"
+}
+==============================
+
+Gender:
+---------
+{
+    "filter": "gender",
+    "value": "Male"
+}
+Value Options: Male, Female
+===============================
+
+Department:
+------------
+{
+    "filter": "department",
+    "value": "development"
+}
+Value Options: development, testing, admin
+================================
+
+Age:
+-----------
+{
+    "filter": "age",
+	"option": "less_than",
+    "value": "20"
+}
+Options: less_than, greater_than
+================================
+
+Salary:
+-----------
+{
+    "filter": "salary",
+	"option": "less_than",
+    "value": "20000"
+}
+Options: less_than, greater_than
+=================================
+
+DOJ:
+-----------
+{
+    "filter": "doj",
+	"option": "before",
+    "value": "2000-03-01"
+}
+Options: before, after
+
