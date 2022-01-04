@@ -1,9 +1,9 @@
 const express = require('express');
 const Employee = require('../model/employee');
 const router = new express.Router();
-const exportEmployees = require('../utils/exportToExcel');
+const {excelInsert, excelInsertAll} = require('../utils/exportExcel');
 
-const workSheetName = 'employee';
+//const exportEmployees = require('../utils/exportToExcel');
 const filePath = './data/emp-details.xlsx';
 
 //DAO
@@ -11,6 +11,7 @@ const createEmployee = async (req, res) =>{
     const emp = new Employee(req.body);
     try {
         await emp.save();
+        await excelInsert(emp, './data/emp_details.xlsx')
         res.status(201).send(emp);
     } catch (e) {
         console.log(e);
@@ -31,10 +32,11 @@ const getAllEmployees = async (req, res) => {
 
 const exportToExcel = async (req, res) => {
     try {
-        const emp = await Employee.find({}, {_id:0, __v:0});// Select all from table without id and __V filed
-        await exportEmployees(emp, workSheetName, filePath);
-        emp.push({ results: emp.length });
-        res.send(emp);
+        const employees = await Employee.find({}, {_id:0, __v:0});// Select all from table without id and __V filed
+        //await exportEmployees(emp, workSheetName, filePath);
+        await excelInsertAll(employees, './data/emp_export.xlsx')
+        employees.push({ results: employees.length });
+        res.send(employees);
     } catch (e) {
         console.log(e);
         res.status(500).send(e);
