@@ -34,7 +34,7 @@ const exportToExcel = async (req, res) => {
     try {
         const employees = await Employee.find({}, {_id:0, __v:0});// Select all from table without id and __V filed
         //await exportEmployees(emp, workSheetName, filePath);
-        await excelInsertAll(employees, './data/emp_export.xlsx')
+        await excelInsertAll(employees, './data/emp_export.xlsx');
         employees.push({ results: employees.length });
         res.send(employees);
     } catch (e) {
