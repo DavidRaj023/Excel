@@ -11,6 +11,7 @@ exports.HEADER = [
 
 exports.EXPORT_EXCEL = './data/emp_export.xlsx';
 exports.EXPORT_COLLECT = './data/emp_collect.xlsx';
+exports.EXPORT_COLLECT_FILE = 'emp_collect.xlsx';
 
 exports.ERROR_EXCEL_IMPORT = 'Fail to import data into database!';
 exports.ERROR_EXCEL_DOWNLOAD = 'Fail to download excelfrom database!';

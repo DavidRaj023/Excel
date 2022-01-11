@@ -113,7 +113,7 @@ const downloadExcel = async(req, res) => {
             await excelWrite(emp, constants.HEADER, constants.EXPORT_COLLECT)
         })
         res.status(200).send({
-            message: constants.SUCCESS_EXCEL_DOWNLOAD + req.file.originalname,
+            message: constants.SUCCESS_EXCEL_DOWNLOAD + constants.EXPORT_COLLECT_FILE,
         });
     } catch (error) {
         console.log(error);
