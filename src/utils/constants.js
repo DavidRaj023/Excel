@@ -12,7 +12,8 @@ exports.HEADER = [
 exports.EXPORT_EXCEL = './data/emp_export.xlsx';
 exports.EXPORT_COLLECT = './data/emp_collect.xlsx';
 exports.EXPORT_COLLECT_FILE = 'emp_collect.xlsx';
-
+exports.TEMP_DOWN_FILE = '../../resources/static/assets/uploads/fileExport-emp_down.xlsx';
+exports.TEMP_UP_FILE = '../../resources/static/assets/uploads/fileExport-emp_details.xlsx';
 exports.ERROR_EXCEL_IMPORT = 'Fail to import data into database!';
 exports.ERROR_EXCEL_DOWNLOAD = 'Fail to download excelfrom database!';
 exports.ERROR_No_DATA = 'No data found';

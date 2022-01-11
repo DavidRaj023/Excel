@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
     cb(null, filePath);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-export-${file.originalname}`);
+    cb(null, `fileExport-${file.originalname}`);
   },
 });
 

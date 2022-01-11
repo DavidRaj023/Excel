@@ -3,6 +3,7 @@ const {excelWriteAll, excelWrite, excelRead} = require('../utils/excel');
 const readXlsxFile = require("read-excel-file/node");
 const path = require('path');
 const constants = require('../utils/constants');
+const util = require('../utils/util');
 
 
 
@@ -92,6 +93,8 @@ const uploadExcel = async (req, res) => {
     try {
         const employees = await excelRead('upload', req);
         await Employee.insertMany(employees);
+        filePath = path.join(__dirname, constants.TEMP_UP_FILE);
+        util.deleteFile(filePath);
         res.status(201).send({
             message: constants.SUCCESS_EXCEL_UPLOADED + req.file.originalname,
         });
@@ -110,8 +113,10 @@ const downloadExcel = async(req, res) => {
         const employeeId = await excelRead('download', req);
         employeeId.forEach(async (id) => {
             let emp = await Employee.findOne({empId: id}, {_id:0, __v:0});
-            await excelWrite(emp, constants.HEADER, constants.EXPORT_COLLECT)
+            await excelWrite(emp, constants.HEADER, constants.EXPORT_COLLECT);
         })
+        filePath = path.join(__dirname, constants.TEMP_DOWN_FILE);
+        util.deleteFile(filePath);
         res.status(200).send({
             message: constants.SUCCESS_EXCEL_DOWNLOAD + constants.EXPORT_COLLECT_FILE,
         });
