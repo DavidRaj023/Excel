@@ -7,7 +7,7 @@ const workbook1 = new ExcelJs.Workbook();
 const worksheet1 = workbook1.addWorksheet('EMS');
     
 
-const excelInsertAll = async(employees, headers, filePath) => {
+const excelWriteAll = async(employees, headers, filePath) => {
     const workbook2 = new ExcelJs.Workbook();
     const worksheet2 = workbook2.addWorksheet('Cloud_EMS');
     worksheet2.columns = headers;
@@ -18,7 +18,7 @@ const excelInsertAll = async(employees, headers, filePath) => {
     const data = await workbook2.xlsx.writeFile(filePath);
 }
 
-const excelInsert = async(employee, headers, filePath) => {
+const excelWrite = async(employee, headers, filePath) => {
     worksheet1.columns = headers;
     worksheet1.addRow(employee);
     await workbook1.xlsx.writeFile(filePath);
@@ -27,7 +27,7 @@ const excelInsert = async(employee, headers, filePath) => {
 //type: upload, download.
 //upload: data from excel to db.
 //download: download data from db and store to excel based on empid's.
-const readExcel = async(type, req) =>{
+const excelRead = async(type, req) =>{
     try {
         if (req.file == undefined) {
             throw new Error("Please upload an excel file!");
@@ -78,7 +78,7 @@ const readExcel = async(type, req) =>{
 
 
 module.exports = {
-    excelInsertAll, 
-    excelInsert,
-    readExcel
+    excelWriteAll, 
+    excelWrite,
+    excelRead
 };
